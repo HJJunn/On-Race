@@ -9,7 +9,9 @@ export const MARATHON_DATA: MarathonEvent[] = [
     location: '서울',
     month: '4',
     day: '15',
+    applyPeriod: '2026.02.20 ~ 2026.03.01',
     date: '2026.04.15',
+    price: '50,000',
     courses: ['Full', 'Half', '10km'],
   },
   {
@@ -20,7 +22,9 @@ export const MARATHON_DATA: MarathonEvent[] = [
     location: '부산',
     month: '5',
     day: '20',
+    applyPeriod: '2026.03.20 ~ 2026.04.01',
     date: '2026.05.20',
+    price: '50,000',
     courses: ['Half', '10km', '5km'],
   },
   {
@@ -31,7 +35,9 @@ export const MARATHON_DATA: MarathonEvent[] = [
     location: '제주',
     month: '6',
     day: '10',
+    applyPeriod: '2026.04.20 ~ 2026.05.01',
     date: '2026.06.10',
+    price: '50,000',
     courses: ['Full', 'Half'],
   },
   {
@@ -42,7 +48,9 @@ export const MARATHON_DATA: MarathonEvent[] = [
     location: '대구',
     month: '7',
     day: '05',
+    applyPeriod: '2026.05.20 ~ 2026.06.01',
     date: '2026.07.05',
+    price: '50,000',
     courses: ['5Km', '10km'],
   },
 ];

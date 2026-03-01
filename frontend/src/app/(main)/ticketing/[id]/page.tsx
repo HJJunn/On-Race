@@ -107,16 +107,29 @@ export default function MarathonDetailPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 pt-8 pb-0">
-      {/* 1. 상단 네비게이션: 목록으로 가기 */}
-      <div className="flex justify-self-start">
-        <Button variant="text" onClick={() => router.back()}>
+      {/* 상단 네비게이션: 목록으로 가기 */}
+      {/* <div className="flex justify-self-start"> */}
+      <div className="flex items-center justify-between w-full">
+        <Button
+          variant="text"
+          size="fit"
+          onClick={() => router.push('/schedule')}
+        >
           <LuArrowLeft size={20} />
           목록으로
+        </Button>
+        <Button
+          variant="ghost"
+          size="fit"
+          className="mr-5"
+          onClick={() => router.push(`/ticketing/${params.id}/renewal`)}
+        >
+          리뉴얼
         </Button>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* 2. 좌측: 대회 상세 정보 영역 */}
+        {/* 좌측: 대회 상세 정보 영역 */}
         <div className="flex-1">
           <div className="p-4 border-3 border-gray-300">
             <div className="flex gap-2 pt-0 pb-3">
@@ -183,10 +196,10 @@ export default function MarathonDetailPage() {
 
               {/* 메인 컨텐츠 영역 */}
               <div className="p-2">
-                {/* 1. 상품정보 탭 */}
+                {/* 상품정보 탭 */}
                 {activeTab === 'product' && (
                   <div className="space-y-4">
-                    {/* 1. 기본정보 섹션 */}
+                    {/* 기본정보 섹션 */}
                     <section>
                       <div className="flex items-center mb-4">
                         <h2 className="text-xl font-bold text-gray-800">
@@ -227,7 +240,7 @@ export default function MarathonDetailPage() {
                       </div>
                     </section>
 
-                    {/* 2. 참가/구성 정보 섹션 */}
+                    {/* 참가/구성 정보 섹션 */}
                     <section>
                       <h2 className="text-xl font-bold mb-6 flex items-center">
                         참가/구성 정보
@@ -329,7 +342,7 @@ export default function MarathonDetailPage() {
                   </div>
                 )}
 
-                {/* 2. 판매정보 탭 */}
+                {/* 판매정보 탭 */}
                 {activeTab === 'sales' && (
                   <div className="space-y-6">
                     <h2 className="text-xl font-bold text-black mb-6">
@@ -549,7 +562,7 @@ export default function MarathonDetailPage() {
           </div>
         </div>
 
-        {/* 3. 우측: 참여 정보 카드 (Sidebar) */}
+        {/* 우측: 참여 정보 카드 (Sidebar) */}
         <aside className="w-full lg:w-[380px]">
           <div className="sticky top-8 bg-white border-3 border-gray-400 rounded-none p-6">
             <h2 className="text-xl font-bold flex items-center gap-2">

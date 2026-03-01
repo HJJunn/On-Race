@@ -8,6 +8,8 @@ export interface MarathonEvent {
   location: string;
   month: string;
   day: string;
+  applyPeriod: string;
   date: string; // YYYY.MM.DD
+  price: string;
   courses: string[];
 }

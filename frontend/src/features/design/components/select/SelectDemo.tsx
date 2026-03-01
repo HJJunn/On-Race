@@ -21,7 +21,7 @@ export default function SelectDemo() {
         <h1 className="text-3xl font-bold">Select Component System</h1>
       </div>
 
-      {/* 1. 베리언트 확인 */}
+      {/* 베리언트 확인 */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">1. Variants</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-xl border">
@@ -64,7 +64,7 @@ export default function SelectDemo() {
         </div>
       </section>
 
-      {/* 2. 사이즈 확인 */}
+      {/* 사이즈 확인 */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">2. Sizes</h2>
         <div className="flex flex-col gap-6 bg-white p-8 rounded-xl border max-w-md">
@@ -108,7 +108,7 @@ export default function SelectDemo() {
         </div>
       </section>
 
-      {/* 3. 비활성화 상태 */}
+      {/* 비활성화 상태 */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">3. States</h2>
         <div className="bg-white p-8 rounded-xl border max-w-md">
@@ -128,7 +128,7 @@ export default function SelectDemo() {
         </div>
       </section>
 
-      {/* 4. 실무 예시 */}
+      {/* 실무 예시 */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2">
           4. Practical Example

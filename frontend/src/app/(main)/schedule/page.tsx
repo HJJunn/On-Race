@@ -8,7 +8,7 @@ import { MarathonEvent } from '@/features/schedule/types';
 import { scheduleService } from '@/features/schedule/services';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { LuImage } from 'react-icons/lu';
+import { MdImage } from 'react-icons/md';
 
 export default function MarathonSchedulePage() {
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function MarathonSchedulePage() {
 
   return (
     <div className="min-h-screen bg-primary1">
-      {/* 1. Header */}
+      {/* Header */}
       <header className="bg-primary text-black py-6  px-4 ">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-2">이벤트 </h2>
@@ -81,10 +81,10 @@ export default function MarathonSchedulePage() {
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="flex flex-col bg-white rounded-md overflow-hidden border hover:shadow-lg cursor-pointer"
+              className="flex flex-col bg-white rounded-md overflow-hidden hover:shadow-lg cursor-pointer"
               onClick={() => router.push(`/ticketing/${event.id}`)}
             >
-              {/* 1. 이미지 및 상태 칩 영역 */}
+              {/* 이미지 및 상태 칩 영역 */}
               <div className="relative aspect-[16/16] overflow-hidden">
                 {/* <img
                   src={
@@ -95,38 +95,33 @@ export default function MarathonSchedulePage() {
                   alt={event.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-gray-100"
                 /> */}
-                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-100 text-gray-400 rounded-lg">
-                  <LuImage size={48} />
-                  {/* 텍스트가 있을 경우를 대비해 mt-2(간격) 유지 */}
+                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 text-gray-400 rounded-lg">
+                  <MdImage size={70} />
                 </div>
                 {/* 상태 칩 (예: 접수중, 마감, 예정) */}
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 mr-1 rounded-full text-xs font-bold bg-gray-100">
-                    {event.status}
-                  </span>
-                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-100">
+                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-50">
                     catagory
                   </span>
                 </div>
               </div>
 
-              {/* 2. 카드 바디 (내용) 영역 */}
-              <div className="p-6 flex flex-col flex-grow">
+              {/* 카드 바디 (내용) 영역 */}
+              <div className="p-4 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <h2 className="font-bold text-black">{event.title}</h2>
-
-                  <div className="space-y-2">
+                  <div className="space-y-1">
+                    <div className="inline px-2 py-1 rounded-sm text-xs font-bold bg-blue-50 text-blue-500">
+                      {event.status}
+                    </div>
+                    <h2 className="font-bold text-black">{event.title}</h2>
                     <div className="flex items-center text-slate-500 text-sm">
-                      {/* <CalendarIcon size={16} className="mr-2 shrink-0" /> */}
                       <span>{event.date}</span>
                     </div>
                     <div className="flex items-center text-slate-500 text-sm">
-                      {/* <MapPinIcon size={16} className="mr-2 shrink-0" /> */}
                       <span className="mr-2">{event.location}</span>
                       <span>{event.courses.join(', ')}</span>
                     </div>
                     <div className="flex items-center text-black text-md font-bold">
-                      {/* <MapPinIcon size={16} className="mr-2 shrink-0" /> */}
                       무료
                     </div>
                   </div>
@@ -136,7 +131,7 @@ export default function MarathonSchedulePage() {
           ))}
         </div>
 
-        {/* 4. Empty State (기존 유지) */}
+        {/* Empty State (기존 유지) */}
         {filteredEvents.length === 0 && (
           <div className="text-center py-32 border-2 border-dashed border-slate-200 rounded-3xl bg-white">
             <SearchIcon className="mx-auto text-slate-200 mb-4" size={48} />
