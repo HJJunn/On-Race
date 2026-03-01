@@ -12,7 +12,7 @@ interface Props {
 export function MarathonCard({ event }: Props) {
   return (
     <Card className="p-4 group overflow-hidden border-2 border-gray-400 rounded-none bg-primary flex flex-col sm:flex-row h-full sm:h-44">
-      {/* 1. 썸네일 섹션 (고정 너비) */}
+      {/* 썸네일 섹션 (고정 너비) */}
       <div className="flex shrink-0 w-full sm:w-48 h-40 sm:h-full overflow-hidden bg-gray-100 border-1 border-gray-400">
         {event.thumbnail ? (
           <img
@@ -27,7 +27,7 @@ export function MarathonCard({ event }: Props) {
         )}
       </div>
 
-      {/* 2. 정보 섹션 (flex-1을 추가하여 남은 공간을 다 차지하게 함) */}
+      {/* 정보 섹션 (flex-1을 추가하여 남은 공간을 다 차지하게 함) */}
       <div className="py-4 px-6 flex-1 flex flex-col justify-between min-w-0">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -72,7 +72,7 @@ export function MarathonCard({ event }: Props) {
         </div>
       </div>
 
-      {/* 3. 우측 화살표 섹션 (정렬 유지) */}
+      {/* 우측 화살표 섹션 (정렬 유지) */}
       <Link
         href={`/ticketing/${event.id}`}
         className="hidden sm:flex w-14 shrink-0 items-center justify-center border-gray-400 group-hover:bg-gray-100 transition-colors cursor-pointer"
