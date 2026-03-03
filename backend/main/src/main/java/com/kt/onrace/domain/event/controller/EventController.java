@@ -11,8 +11,10 @@ import com.kt.onrace.common.response.CursorResponse;
 import com.kt.onrace.domain.event.dto.EventDetailResponse;
 import com.kt.onrace.domain.event.dto.EventListResponse;
 import com.kt.onrace.domain.event.dto.EventSearchRequest;
+import com.kt.onrace.domain.event.dto.EventSalesInfoResponse;
 import com.kt.onrace.domain.event.service.EventService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @ApiLog
@@ -25,7 +27,7 @@ public class EventController {
 
 	@GetMapping
 	public ApiResponse<CursorResponse<EventListResponse>> getEvents(
-		EventSearchRequest request
+		@Valid EventSearchRequest request
 	) {
 		return ApiResponse.success(eventService.getEvents(request));
 	}
@@ -35,5 +37,12 @@ public class EventController {
 		@PathVariable Long eventId
 	) {
 		return ApiResponse.success(eventService.getEventDetail(eventId));
+	}
+
+	@GetMapping("/{eventId}/sales-info")
+	public ApiResponse<EventSalesInfoResponse> getEventSalesInfo(
+		@PathVariable Long eventId
+	) {
+		return ApiResponse.success(eventService.getEventSalesInfo(eventId));
 	}
 }
