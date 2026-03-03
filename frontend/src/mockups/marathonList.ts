@@ -5,12 +5,14 @@ export const MARATHON_LIST: MarathonList = {
     {
       id: 1,
       title: '서울 마라톤 2026',
-      status: 'IN_PROGRESS',
+      status: 'OPEN',
       type: 'LOTTERY',
+      category: 'MARATHON',
       thumbnailImg: '',
       eventAt: '2026-03-15T09:00:00',
       appStartAt: '2026-02-01T00:00:00',
       appEndAt: '2026-02-28T23:59:59',
+      resultAt: '2026-04-01T10:00:00',
       venueAddress: '서울특별시 송파구 올림픽로',
       courses: [
         {
@@ -36,12 +38,14 @@ export const MARATHON_LIST: MarathonList = {
     {
       id: 2,
       title: '부산 바다 러닝 페스티벌',
-      status: 'UPCOMING',
+      status: 'OPEN',
       type: 'FIRST_COME',
+      category: 'PLAY_RUN',
       thumbnailImg: '',
       eventAt: '2026-04-16T09:00:00',
       appStartAt: '2026-03-01T00:00:00',
       appEndAt: '2026-03-28T23:59:59',
+      resultAt: '2026-05-01T10:00:00',
       venueAddress: '부산',
       courses: [
         {
@@ -66,14 +70,16 @@ export const MARATHON_LIST: MarathonList = {
     },
     {
       id: 3,
-      title: '제주 올레길 마라톤',
+      title: '런데이 8주 완성! 30분 달리기 첫 도전기',
       status: 'UPCOMING',
       type: 'FIRST_COME',
+      category: 'EXPERIENCE',
       thumbnailImg: '',
       eventAt: '2026-05-17T09:00:00',
       appStartAt: '2026-04-01T00:00:00',
       appEndAt: '2026-04-28T23:59:59',
-      venueAddress: '제주',
+      resultAt: '2026-06-01T10:00:00',
+      venueAddress: '서울',
       courses: [
         {
           id: 1,
@@ -91,13 +97,42 @@ export const MARATHON_LIST: MarathonList = {
     },
     {
       id: 4,
+      title: '제주 올레길 마라톤',
+      status: 'UPCOMING',
+      type: 'FIRST_COME',
+      category: 'CLASS',
+      thumbnailImg: '',
+      eventAt: '2026-05-17T09:00:00',
+      appStartAt: '2026-04-01T00:00:00',
+      appEndAt: '2026-04-28T23:59:59',
+      resultAt: '2026-06-01T10:00:00',
+      venueAddress: '제주',
+      courses: [
+        {
+          id: 1,
+          name: '풀코스',
+          distanceM: 42195,
+          price: 50000,
+        },
+        {
+          id: 2,
+          name: '하프코스',
+          distanceM: 21097,
+          price: 35000,
+        },
+      ],
+    },
+    {
+      id: 5,
       title: '대구 컬러런',
-      status: 'COMPLETED',
+      status: 'CLOSED',
       type: 'LOTTERY',
+      category: 'ETC',
       thumbnailImg: '',
       eventAt: '2026-02-18T09:00:00',
       appStartAt: '2026-01-01T00:00:00',
       appEndAt: '2026-01-28T23:59:59',
+      resultAt: '2026-03-01T10:00:00',
       venueAddress: '대구',
       courses: [
         {

@@ -7,7 +7,7 @@ import {
   EventConfirmModal,
   OptionConfirmModal,
   UserConfirmModal,
-} from '@/features/ticketing/components';
+} from '@/features/ticketing/components/details/entry';
 import { useDetailedTracker } from '@/features/ticketing/hooks/useDetailedTracker';
 import { Input } from '@/components/ui/input';
 

@@ -20,7 +20,7 @@ const DistanceSlider = ({ min, max, step = 1, onChange }: Props) => {
     [min, max],
   );
 
-  // 1. UI 업데이트 (검은색 막대 범위 조절)
+  // UI 업데이트 (검은색 막대 범위 조절)
   useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxVal);
@@ -31,15 +31,13 @@ const DistanceSlider = ({ min, max, step = 1, onChange }: Props) => {
     }
   }, [minVal, maxVal, getPercent]);
 
-  // 2. 부모에게 데이터 전달 (Infinite Loop 방지 위해 onChange 제외)
+  // 부모에게 데이터 전달 (Infinite Loop 방지 위해 onChange 제외)
   useEffect(() => {
     onChange({ min: minVal, max: maxVal });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minVal, maxVal]);
 
   return (
     <div className="relative w-full h-10 flex items-center justify-center">
-      {/* 실제 Input들 (투명 핸들) */}
       <input
         type="range"
         min={min}

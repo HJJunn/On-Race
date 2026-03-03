@@ -8,11 +8,10 @@ import { cn } from '@/lib/utils';
 
 // 폰트 설정
 const pretendard = localFont({
-  // src: '../public/fonts/PretendardVariable.woff2', // 폰트 파일 경로
   src: '../../public/fonts/PretendardVariable.woff2',
   display: 'swap',
-  weight: '45 920', // 가변 폰트의 경우 굵기 범위 지정
-  variable: '--font-pretendard', // Tailwind에서 사용할 변수명
+  weight: '45 920',
+  variable: '--font-pretendard',
 });
 
 export const metadata: Metadata = {
@@ -32,7 +31,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <Providers>
-          <div className="flex flex-col min-h-screen overflow-auto">
+          <div className="flex flex-col min-h-screen">
             <Header />
 
             <main className="flex-1 bg-white content-center">{children}</main>

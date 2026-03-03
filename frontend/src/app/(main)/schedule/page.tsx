@@ -8,20 +8,17 @@ import { MarathonEvent } from '@/features/schedule/types';
 import { scheduleService } from '@/features/schedule/services';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { MdImage } from 'react-icons/md';
+import {
+  CATEGORIES,
+  getStatusLabel,
+  getTypeLabel,
+  getCategoryLabel,
+} from '@/types/constants';
 
 export default function MarathonSchedulePage() {
   const router = useRouter();
   const [events, setEvents] = useState<MarathonEvent[]>([]);
   const [selected, setSelected] = useState('all');
-
-  const CATEGORIES = [
-    { id: 'all', label: '전체보기' },
-    { id: 'marathon', label: '마라톤' },
-    { id: 'playrun', label: '플레이 런' },
-    { id: 'class', label: '러닝클래스' },
-    { id: 'etc', label: '기타' },
-  ];
 
   // 데이터 로드
   useEffect(() => {
@@ -86,22 +83,16 @@ export default function MarathonSchedulePage() {
             >
               {/* 이미지 및 상태 칩 영역 */}
               <div className="relative aspect-[16/16] overflow-hidden">
-                {/* <img
-                  src={
-                    event.id <= 2
-                      ? `/contents${event.id}.jpg`
-                      : `/contents${event.id}.png`
-                  }
-                  alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-gray-100"
-                /> */}
-                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 text-gray-400 rounded-lg">
-                  <MdImage size={70} />
-                </div>
+                <img
+                  src={'/image/default.png'}
+                  alt={'이벤트'}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+
                 {/* 상태 칩 (예: 접수중, 마감, 예정) */}
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-50">
-                    catagory
+                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-100">
+                    {getCategoryLabel(event.category)}
                   </span>
                 </div>
               </div>
@@ -110,15 +101,11 @@ export default function MarathonSchedulePage() {
               <div className="p-4 flex flex-col flex-grow">
                 <div className="flex-grow">
                   <div className="space-y-1.5">
-                    {/* 상태 뱃지 - 상태에 따라 색상이 변하면 더 좋습니다 */}
-                    <div
-                      className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold ${
-                        event.status === 'IN_PROGRESS'
-                          ? 'bg-blue-50 text-blue-500'
-                          : 'bg-slate-100 text-slate-500'
-                      }`}
-                    >
-                      {event.status === 'IN_PROGRESS' ? '접수중' : '마감'}
+                    <div className="inline-block px-2 py-0.5 mr-1 rounded-sm text-[10px] font-bold bg-gray-100 text-gray-500">
+                      {getTypeLabel(event.type)}
+                    </div>
+                    <div className="inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold bg-gray-100 text-gray-500">
+                      {getStatusLabel(event.status)}
                     </div>
 
                     <h2 className="font-bold text-black text-lg leading-tight truncate">
