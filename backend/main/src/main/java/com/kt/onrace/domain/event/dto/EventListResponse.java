@@ -1,10 +1,16 @@
 package com.kt.onrace.domain.event.dto;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import com.kt.onrace.domain.event.entity.Event;
+import com.kt.onrace.domain.event.entity.EventCourse;
+import com.kt.onrace.domain.event.entity.EventImage;
+import com.kt.onrace.domain.event.entity.EventImageType;
+import com.kt.onrace.domain.event.entity.EventRegion;
 import com.kt.onrace.domain.event.entity.EventStatus;
+import com.kt.onrace.domain.event.entity.EventAppType;
 import com.kt.onrace.domain.event.entity.EventType;
 
 import lombok.Builder;
@@ -13,22 +19,35 @@ import lombok.Builder;
 public record EventListResponse(
 	Long id,
 	String title,
-	EventStatus status,
 	EventType type,
+	EventAppType appType,
+	EventStatus status,
 	String thumbnailImg,
 	LocalDateTime eventAt,
 	LocalDateTime appStartAt,
 	LocalDateTime appEndAt,
-	String venueAddress,
-	List<CourseDto> courses
+	EventRegion region,
+	String venue,
+	List<CourseDto> courses,
+	List<ImageDto> images,
+	Long minPrice
 ) {
 
 	@Builder
 	public record CourseDto(
 		Long id,
 		String name,
-		int distanceM,
-		long price
+		Integer distanceM,
+		Long price
+	) {
+	}
+
+	@Builder
+	public record ImageDto(
+		Long id,
+		EventImageType type,
+		String url,
+		Integer sort
 	) {
 	}
 
@@ -42,17 +61,36 @@ public record EventListResponse(
 				.build())
 			.toList();
 
+		List<ImageDto> images = event.getImages().stream()
+			.filter(image -> image.getType() == EventImageType.THUMBNAIL)
+			.sorted(Comparator.comparingInt(EventImage::getSort))
+			.map(image -> ImageDto.builder()
+				.id(image.getId())
+				.type(image.getType())
+				.url(image.getUrl())
+				.sort(image.getSort())
+				.build())
+			.toList();
+
+		Long minPrice = event.getCourses().stream()
+			.mapToLong(EventCourse::getPrice)
+			.min()
+			.orElse(0L);
+
 		return EventListResponse.builder()
 			.id(event.getId())
 			.title(event.getTitle())
-			.status(event.getStatus())
 			.type(event.getType())
-			.thumbnailImg(event.getThumbnailImg())
+			.appType(event.getAppType())
+			.status(event.getStatus())
 			.eventAt(event.getEventAt())
 			.appStartAt(event.getAppStartAt())
 			.appEndAt(event.getAppEndAt())
-			.venueAddress(event.getVenueAddress())
+			.region(event.getRegion())
+			.venue(event.getVenue())
 			.courses(courses)
+			.images(images)
+			.minPrice(minPrice)
 			.build();
 	}
 }

@@ -50,7 +50,10 @@ public enum BusinessErrorCode implements ErrorCode {
 	ENTRY_EVENT_NOT_IN_STANDBY(HttpStatus.BAD_REQUEST, "ENT_004", "대기중 상태에서만 가능합니다."),
 
 	//STOCK
-	STOCK_NOT_FOUND(HttpStatus.NOT_FOUND, "STK_001", "재고 정보를 찾을 수 없습니다.");
+	STOCK_NOT_FOUND(HttpStatus.NOT_FOUND, "STK_001", "재고 정보를 찾을 수 없습니다."),
+
+	//SALES_INFO
+	SALES_INFO_NOT_FOUND(HttpStatus.NOT_FOUND, "SLS_001", "판매 정보를 찾을 수 없습니다.");
 
 	private final HttpStatus status;
 	private final String code;

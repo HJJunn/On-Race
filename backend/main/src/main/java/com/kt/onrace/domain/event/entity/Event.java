@@ -27,20 +27,15 @@ public class Event extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private EventStatus status;
-
-	@Column(nullable = false, length = 500)
-	private String thumbnailImg;
-
-	@Column(nullable = false, length = 500)
-	private String detailImg;
-
-	@Column(nullable = false, length = 500)
-	private String courseMapImg;
+	private EventType type;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private EventType type;
+	private EventAppType appType;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private EventStatus status;
 
 	@Column(nullable = false)
 	private LocalDateTime eventAt;
@@ -51,8 +46,12 @@ public class Event extends BaseEntity {
 	@Column(nullable = false)
 	private LocalDateTime appEndAt;
 
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String venueAddress;
+	private EventRegion region; //  지역명: SEOUL
+
+	@Column(nullable = false)
+	private String venue; //  장소명: 서울 올림픽 공원
 
 	private LocalDateTime lotteryAnnouncedAt;
 
@@ -71,41 +70,40 @@ public class Event extends BaseEntity {
 	@OneToMany(mappedBy = "event")
 	private List<EventPackage> packages = new ArrayList<>();
 
+	@OneToMany(mappedBy = "event")
+	private List<EventImage> images = new ArrayList<>();
+
 	@Builder
-	public Event(String title, EventStatus status, String thumbnailImg, String detailImg,
-			String courseMapImg, EventType type, LocalDateTime eventAt,
-			LocalDateTime appStartAt, LocalDateTime appEndAt, String venueAddress,
-			LocalDateTime lotteryAnnouncedAt, String notice, Boolean isView) {
+	public Event(String title, EventType type, EventAppType appType, EventStatus status, LocalDateTime eventAt,
+		LocalDateTime appStartAt, LocalDateTime appEndAt, EventRegion region, String venue,
+		LocalDateTime lotteryAnnouncedAt, String notice, Boolean isView) {
 		this.title = title;
-		this.status = status;
-		this.thumbnailImg = thumbnailImg;
-		this.detailImg = detailImg;
-		this.courseMapImg = courseMapImg;
 		this.type = type;
+		this.appType = appType;
+		this.status = status;
 		this.eventAt = eventAt;
 		this.appStartAt = appStartAt;
 		this.appEndAt = appEndAt;
-		this.venueAddress = venueAddress;
+		this.region = region;
+		this.venue = venue;
 		this.lotteryAnnouncedAt = lotteryAnnouncedAt;
 		this.notice = notice;
 		this.isView = isView != null ? isView : false;
 		this.isDeleted = false;
 	}
 
-	public void update(String title, EventStatus status, String thumbnailImg, String detailImg,
-			String courseMapImg, EventType type, LocalDateTime eventAt,
-			LocalDateTime appStartAt, LocalDateTime appEndAt, String venueAddress,
-			LocalDateTime lotteryAnnouncedAt, String notice, Boolean isView) {
+	public void update(String title, EventType type, EventAppType appType, EventStatus status, LocalDateTime eventAt,
+		LocalDateTime appStartAt, LocalDateTime appEndAt, EventRegion region, String venue,
+		LocalDateTime lotteryAnnouncedAt, String notice, Boolean isView) {
 		this.title = title;
-		this.status = status;
-		this.thumbnailImg = thumbnailImg;
-		this.detailImg = detailImg;
-		this.courseMapImg = courseMapImg;
 		this.type = type;
+		this.appType = appType;
+		this.status = status;
 		this.eventAt = eventAt;
 		this.appStartAt = appStartAt;
 		this.appEndAt = appEndAt;
-		this.venueAddress = venueAddress;
+		this.region = region;
+		this.venue = venue;
 		this.lotteryAnnouncedAt = lotteryAnnouncedAt;
 		this.notice = notice;
 		this.isView = isView != null ? isView : this.isView;

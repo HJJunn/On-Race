@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum EventType {
+public enum EventAppType {
 
-	MARATHON("마라톤"),
-	RUNNING("러닝"),
-	TREASURE_HUNT("보물찾기"),
-	COPS_AND_ROBBERS("경찰과 도둑");
+	LOTTERY("응모"),
+	FIRST_COME("선착순");
 
 	private final String description;
 }
