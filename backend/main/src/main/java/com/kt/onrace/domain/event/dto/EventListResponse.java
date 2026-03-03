@@ -22,7 +22,6 @@ public record EventListResponse(
 	EventType type,
 	EventAppType appType,
 	EventStatus status,
-	String thumbnailImg,
 	LocalDateTime eventAt,
 	LocalDateTime appStartAt,
 	LocalDateTime appEndAt,

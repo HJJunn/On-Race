@@ -46,7 +46,7 @@ public class EventService {
 
 	@ServiceLog
 	public EventSalesInfoResponse getEventSalesInfo(Long eventId) {
-		Event event = eventRepository.findByIdOrThrow(eventId, BusinessErrorCode.EVENT_NOT_FOUND);
+		Event event = eventRepository.findVisibleEventDetailOrThrow(eventId, BusinessErrorCode.EVENT_NOT_FOUND);
 
 		EventSalesInfo salesInfo = eventSalesInfoRepository.findByEventIdOrThrow(eventId, BusinessErrorCode.SALES_INFO_NOT_FOUND);
 

@@ -3,6 +3,7 @@ package com.kt.onrace.domain.event.dto;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import com.kt.onrace.domain.event.entity.Event;
 import com.kt.onrace.domain.event.entity.EventImage;
@@ -106,8 +107,7 @@ public record EventDetailResponse(
 				.build())
 			.toList();
 
-		List<ImageDto> thumbnailImg = event.getImages().stream()
-			.filter(image -> image.getType() == EventImageType.THUMBNAIL)
+		Map<EventImageType, List<ImageDto>> imagesByType = event.getImages().stream()
 			.sorted(Comparator.comparingInt(EventImage::getSort))
 			.map(image -> ImageDto.builder()
 				.id(image.getId())
@@ -115,29 +115,11 @@ public record EventDetailResponse(
 				.url(image.getUrl())
 				.sort(image.getSort())
 				.build())
-			.toList();
+			.collect(java.util.stream.Collectors.groupingBy(ImageDto::type));
 
-		List<ImageDto> detailImg = event.getImages().stream()
-			.filter(image -> image.getType() == EventImageType.DETAIL)
-			.sorted(Comparator.comparingInt(EventImage::getSort))
-			.map(image -> ImageDto.builder()
-				.id(image.getId())
-				.type(image.getType())
-				.url(image.getUrl())
-				.sort(image.getSort())
-				.build())
-			.toList();
-
-		List<ImageDto> courseMapImg = event.getImages().stream()
-			.filter(image -> image.getType() == EventImageType.COURSE_MAP)
-			.sorted(Comparator.comparingInt(EventImage::getSort))
-			.map(image -> ImageDto.builder()
-				.id(image.getId())
-				.type(image.getType())
-				.url(image.getUrl())
-				.sort(image.getSort())
-				.build())
-			.toList();
+		List<ImageDto> thumbnailImg = imagesByType.getOrDefault(EventImageType.THUMBNAIL, java.util.Collections.emptyList());
+		List<ImageDto> detailImg = imagesByType.getOrDefault(EventImageType.DETAIL, java.util.Collections.emptyList());
+		List<ImageDto> courseMapImg = imagesByType.getOrDefault(EventImageType.COURSE_MAP, java.util.Collections.emptyList());
 
 		return EventDetailResponse.builder()
 			.id(event.getId())
