@@ -33,14 +33,14 @@ public class AuthController extends SwaggerAssistance {
 
 	private final AuthService authService;
 
-	@Operation(summary = "회원가입", description = "이메일(loginId), 비밀번호, 이름, 휴대폰(선택)으로 회원가입")
+	@Operation(summary = "회원가입", description = "이메일, 비밀번호로 회원가입")
 	@PostMapping("/signup")
 	public ApiResponse<SignupResponse> signup(@Valid @RequestBody SignupRequest request) {
 		SignupResponse response = authService.signup(request);
 		return ApiResponse.success(response);
 	}
 
-	@Operation(summary = "로그인", description = "loginId/password로 로그인 후 Access Token, Refresh Token 발급")
+	@Operation(summary = "로그인", description = "이메일로 로그인 후 Access Token, Refresh Token 발급")
 	@PostMapping("/login")
 	public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
 		LoginResponse response = authService.login(request);
