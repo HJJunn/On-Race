@@ -60,8 +60,8 @@ export default function Body() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await scheduleService.getSchedule();
-        setEvents(result.data);
+        const result = await scheduleService.getSchedules();
+        setEvents(result.data.content);
       } catch (error) {
         console.error('데이터 로드 실패:', error);
       }
@@ -171,10 +171,10 @@ export default function Body() {
                     {/* 날짜 영역 (왼쪽) */}
                     <div className="flex flex-col items-center justify-center min-w-[80px] border-r border-gray-200 pr-6 mr-8">
                       <span className="text-sm font-bold text-black">
-                        {event.month}월
+                        {new Date(event.eventAt).getMonth() + 1}월
                       </span>
                       <span className="text-3xl font-black text-black">
-                        {event.day}
+                        {new Date(event.eventAt).getDate()}
                       </span>
                     </div>
 
@@ -191,9 +191,13 @@ export default function Body() {
                       <h3 className="text-xl font-bold text-black transition-colors">
                         {event.title}
                       </h3>
-                      <span className="text-sm font-bold text-gray-500">
-                        {event.location}
-                      </span>
+                      <div className="text-sm text-gray-500">
+                        <span>{event.venueAddress}</span>
+                        <span className="mx-1 shrink-0">·</span>
+                        <span>
+                          {event.courses.map((c) => c.name).join(', ')}
+                        </span>
+                      </div>
                     </div>
                   </div>
 

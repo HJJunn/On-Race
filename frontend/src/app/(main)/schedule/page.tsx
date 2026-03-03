@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
-import { MarathonCard, ScheduleFilter } from '@/features/schedule/components';
+import { ScheduleFilter } from '@/features/schedule/components';
 import { useMarathonFilter } from '@/features/schedule/hooks';
 import { MarathonEvent } from '@/features/schedule/types';
 import { scheduleService } from '@/features/schedule/services';
@@ -27,8 +27,8 @@ export default function MarathonSchedulePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await scheduleService.getSchedule();
-        setEvents(result.data);
+        const result = await scheduleService.getSchedules();
+        setEvents(result.data.content);
       } catch (error) {
         console.error('데이터 로드 실패:', error);
       }
@@ -109,22 +109,50 @@ export default function MarathonSchedulePage() {
               {/* 카드 바디 (내용) 영역 */}
               <div className="p-4 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <div className="space-y-1">
-                    <div className="inline px-2 py-1 rounded-sm text-xs font-bold bg-blue-50 text-blue-500">
-                      {event.status}
+                  <div className="space-y-1.5">
+                    {/* 상태 뱃지 - 상태에 따라 색상이 변하면 더 좋습니다 */}
+                    <div
+                      className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold ${
+                        event.status === 'IN_PROGRESS'
+                          ? 'bg-blue-50 text-blue-500'
+                          : 'bg-slate-100 text-slate-500'
+                      }`}
+                    >
+                      {event.status === 'IN_PROGRESS' ? '접수중' : '마감'}
                     </div>
-                    <h2 className="font-bold text-black">{event.title}</h2>
-                    <div className="flex items-center text-slate-500 text-sm">
-                      <span>{event.date}</span>
+
+                    <h2 className="font-bold text-black text-lg leading-tight truncate">
+                      {event.title}
+                    </h2>
+
+                    {/* 주소 및 코스 (한 줄 처리) */}
+                    <div className="flex items-center text-gray-500 text-sm min-w-0">
+                      <span className="truncate shrink-0 max-w-[120px] sm:max-w-none">
+                        {event.venueAddress}
+                      </span>
+                      <span className="mx-1 shrink-0">·</span>
+                      <span className="truncate">
+                        {event.courses.map((c) => c.name).join(', ')}
+                      </span>
                     </div>
-                    <div className="flex items-center text-slate-500 text-sm">
-                      <span className="mr-2">{event.location}</span>
-                      <span>{event.courses.join(', ')}</span>
-                    </div>
-                    <div className="flex items-center text-black text-md font-bold">
-                      무료
+                    {/* 날짜 정보 */}
+                    <div className="flex items-center text-gray-400 text-sm">
+                      <span>
+                        {new Date(event.eventAt).toLocaleDateString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                        })}
+                      </span>
                     </div>
                   </div>
+                </div>
+
+                {/* 가격 정보 */}
+                <div className="mt-3 flex items-center text-black text-md font-bold">
+                  {event.courses.length > 0
+                    ? `${Math.min(...event.courses.map((c) => c.price)).toLocaleString()}원 ~`
+                    : '가격 정보 없음'}
                 </div>
               </div>
             </div>
