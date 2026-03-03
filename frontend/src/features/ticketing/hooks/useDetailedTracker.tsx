@@ -73,11 +73,14 @@ export const useDetailedTracker = () => {
 
       timerRef.current = setInterval(() => {
         const now = performance.now();
+        const timeOrigin = performance.timeOrigin;
+        const currentUnixTimestamp = Math.floor(timeOrigin + now);
+
         const dt = now - lastTimestamp.current;
 
         const newLog: MouseLog = {
           ...currentPos.current,
-          timestamp: now,
+          timestamp: currentUnixTimestamp,
           distance: Number(accumDistance.current.toFixed(2)),
           moveCount: counts.current.move,
           downCount: counts.current.down,

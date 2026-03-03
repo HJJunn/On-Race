@@ -1,9 +1,9 @@
-import { ResultProps } from '@/types/api';
+import { ApiResponse } from '@/types/api';
 
-export const wrapMockResponse = (data: any): ResultProps => ({
+export const wrapMockResponse = <T>(data: T): ApiResponse<T> => ({
+  success: true,
+  code: 'SUCCESS',
   message: 'Mock data success',
-  params: {},
   data: data,
-  totalCount: Array.isArray(data) ? data.length : 1,
-  timestamp: new Date(),
+  timestamp: new Date().toString(),
 });

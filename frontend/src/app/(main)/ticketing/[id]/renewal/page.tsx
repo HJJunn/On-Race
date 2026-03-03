@@ -42,8 +42,8 @@ export default function MarathonDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await scheduleService.getSchedule();
-        setEvents(result.data);
+        const result = await scheduleService.getSchedules();
+        setEvents(result.data.content);
       } catch (error) {
         console.error('데이터 로드 실패:', error);
       }
@@ -125,9 +125,9 @@ export default function MarathonDetailPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* 왼쪽: 썸네일 이미지 */}
           <div className="relative w-full  overflow-hidden bg-gray-200">
-            {event.thumbnail ? (
+            {event.thumbnailImg ? (
               <img
-                src={event.thumbnail}
+                src={event.thumbnailImg}
                 alt={event.title}
                 className="w-full h-full object-cover"
               />
@@ -154,24 +154,28 @@ export default function MarathonDetailPage() {
               <div className="flex">
                 <span className="w-24 font-semibold">장소</span>
                 <span className="flex-1">
-                  {event.location || '서울 광화문 광장'}
+                  {event.venueAddress || '서울 광화문 광장'}
                 </span>
               </div>
               <div className="flex">
                 <span className="w-24 font-semibold">응모기간</span>
                 <span className="flex-1">
-                  {event.applyPeriod || '2024.03.01 - 2024.03.15'}
+                  {event.appStartAt
+                    ? `${new Date(event.appStartAt).toLocaleDateString('ko-KR')} ~ ${new Date(event.appEndAt).toLocaleDateString('ko-KR')}`
+                    : '2024.03.01 - 2024.03.15'}
                 </span>
               </div>
               <div className="flex">
                 <span className="w-24 font-semibold">개최일</span>
-                <span className="flex-1">{event.date || '2024.04.20'}</span>
+                <span className="flex-1">
+                  {event.eventAt
+                    ? `${new Date(event.eventAt).toLocaleDateString('ko-KR')}`
+                    : '2024.04.20'}
+                </span>
               </div>
               <div className="flex">
                 <span className="w-24 font-semibold">참가비</span>
-                <span className="flex-1 font-bold">
-                  {`${event.price}원` || '50,000원'}
-                </span>
+                <span className="flex-1 font-bold">50,000원</span>
               </div>
               <div className="flex">
                 <span className="w-24 font-semibold">배송정보</span>
@@ -375,10 +379,10 @@ export default function MarathonDetailPage() {
                         코스 안내
                       </h2>
                       <div className="relative w-full h-[200px] overflow-hidden bg-gray-100 border-2 rounded">
-                        {event.thumbnail ? (
+                        {event.thumbnailImg ? (
                           <img
-                            src={event.thumbnail}
-                            alt="코스 지도"
+                            src={event.thumbnailImg}
+                            alt="코스 안내"
                             className="w-full h-full object-cover"
                           />
                         ) : (
@@ -395,10 +399,10 @@ export default function MarathonDetailPage() {
                         상세이미지
                       </h2>
                       <div className="relative w-full h-[200px] overflow-hidden bg-gray-100 border-2 rounded">
-                        {event.thumbnail ? (
+                        {event.thumbnailImg ? (
                           <img
-                            src={event.thumbnail}
-                            alt="코스 지도"
+                            src={event.thumbnailImg}
+                            alt="상세 이미지"
                             className="w-full h-full object-cover"
                           />
                         ) : (

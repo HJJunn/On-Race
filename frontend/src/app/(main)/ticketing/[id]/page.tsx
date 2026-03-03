@@ -41,8 +41,8 @@ export default function MarathonDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await scheduleService.getSchedule();
-        setEvents(result.data);
+        const result = await scheduleService.getSchedules();
+        setEvents(result.data.content);
       } catch (error) {
         console.error('데이터 로드 실패:', error);
       }
@@ -147,9 +147,9 @@ export default function MarathonDetailPage() {
               </Badge>
             </div>
             <div className="relative w-full h-[400px] rounded-2xl overflow-hidden bg-gray-50 mb-8 border-2 rounded-none">
-              {event.thumbnail ? (
+              {event.thumbnailImg ? (
                 <img
-                  src={event.thumbnail}
+                  src={event.thumbnailImg}
                   alt={event.title}
                   className="w-full h-full object-cover"
                 />
@@ -305,10 +305,10 @@ export default function MarathonDetailPage() {
                           코스 안내
                         </h2>
                         <div className="relative w-full h-[200px] overflow-hidden bg-gray-100 border-2 rounded">
-                          {event.thumbnail ? (
+                          {event.thumbnailImg ? (
                             <img
-                              src={event.thumbnail}
-                              alt="코스 지도"
+                              src={event.thumbnailImg}
+                              alt="코스 안내"
                               className="w-full h-full object-cover"
                             />
                           ) : (
@@ -325,10 +325,10 @@ export default function MarathonDetailPage() {
                           상세이미지
                         </h2>
                         <div className="relative w-full h-[200px] overflow-hidden bg-gray-100 border-2 rounded">
-                          {event.thumbnail ? (
+                          {event.thumbnailImg ? (
                             <img
-                              src={event.thumbnail}
-                              alt="코스 지도"
+                              src={event.thumbnailImg}
+                              alt="코스 이미지"
                               className="w-full h-full object-cover"
                             />
                           ) : (
