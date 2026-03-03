@@ -6,6 +6,7 @@ import { MarathonEvent } from '@/features/schedule/types';
 import { scheduleService } from '@/features/schedule/services';
 import { useRouter } from 'next/navigation';
 import { LuArrowLeft, LuArrowRight, LuCircleAlert } from 'react-icons/lu';
+import { getCategoryLabel, getStatusLabel } from '@/types/constants';
 
 export default function Body() {
   const [events, setEvents] = useState<MarathonEvent[]>([]);
@@ -18,27 +19,27 @@ export default function Body() {
       title: '마라톤',
       subtitle:
         '익숙했던 거리를 새로운 시각으로 바라볼 수 있는 지역 기반 마라톤',
-      img: '/contents1.jpg',
+      img: '/image/contents1.jpg',
     },
     {
       id: 2,
       title: '플레이 런',
       subtitle:
         '보물찾기, 경찰과 도둑처럼 테마를 더해 놀이처럼 즐기는 미니 러닝 이벤트',
-      img: '/contents2.jpg',
+      img: '/image/contents2.jpg',
     },
     {
       id: 3,
       title: '체험단',
       subtitle: 'On의 신제품을 가장 먼저 체험해볼 수 있는 소규모 러닝 이벤트',
-      img: '/contents3.png',
+      img: '/image/contents3.png',
     },
     {
       id: 4,
       title: '러닝 클래스',
       subtitle:
         '전문 트레이너·스포츠 인플루언서의 코칭을 받을 수 있는 그룹 클래스',
-      img: '/contents4.png',
+      img: '/image/contents4.png',
     },
   ];
 
@@ -182,10 +183,10 @@ export default function Body() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-3">
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-sm bg-gray-200">
-                          Category
+                          {getCategoryLabel(event.category)}
                         </span>
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-sm bg-gray-200">
-                          {event.status}
+                          {getStatusLabel(event.status)}
                         </span>
                       </div>
                       <h3 className="text-xl font-bold text-black transition-colors">

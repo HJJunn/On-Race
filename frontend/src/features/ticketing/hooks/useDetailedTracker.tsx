@@ -35,7 +35,7 @@ export const useDetailedTracker = () => {
   const handlePointerEvent = useCallback((e: PointerEvent) => {
     const target = e.target as HTMLElement;
 
-    // 1. 타입별 카운팅
+    // 타입별 카운팅
     if (e.type === 'pointermove') {
       counts.current.move++;
       accumDistance.current += Math.sqrt(
@@ -49,7 +49,7 @@ export const useDetailedTracker = () => {
 
     lastEventType.current = e.type;
 
-    // 2. 상태 업데이트
+    // 상태 업데이트
     currentPos.current = {
       x: e.pageX,
       y: e.pageY,
