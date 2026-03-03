@@ -8,7 +8,7 @@ export default function InputDemo() {
         Input Component System
       </h1>
 
-      {/* 1. Variants Showcase */}
+      {/* Variants Showcase */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           1. Variants
@@ -40,7 +40,7 @@ export default function InputDemo() {
         </div>
       </section>
 
-      {/* 2. Sizes Showcase */}
+      {/* Sizes Showcase */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           2. Sizes
@@ -72,7 +72,7 @@ export default function InputDemo() {
         </div>
       </section>
 
-      {/* 3. Interaction States */}
+      {/* Interaction States */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           3. States
@@ -84,7 +84,7 @@ export default function InputDemo() {
         </div>
       </section>
 
-      {/* 4. Real-world Example (Login Form) */}
+      {/* Real-world Example (Login Form) */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           4. Form Example

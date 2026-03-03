@@ -13,6 +13,7 @@ interface ModalProps {
   onClose: () => void;
   onConfirm: () => void;
   data: EventData;
+  template: number;
 }
 
 export const OptionConfirmModal = ({
@@ -20,16 +21,17 @@ export const OptionConfirmModal = ({
   onClose,
   onConfirm,
   data,
+  template,
 }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
     // 전체 화면 레이어 (z-index 50)
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
-      {/* 1. 배경 레이어: 회색 투명 배경 + 블러 (클릭 이벤트 없음) */}
+      {/* 배경 레이어: 회색 투명 배경 + 블러 (클릭 이벤트 없음) */}
       <div className="absolute inset-0 bg-black/50 transition-opacity" />
 
-      {/* 2. 모달 본체 */}
+      {/* 모달 본체 */}
       <div className="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-white shadow-2xl transition-all animate-in fade-in zoom-in duration-300">
         {/* 헤더 부분: 제목과 X 버튼 */}
         <div className="relative flex items-center justify-between border-b border-gray-100 px-6 py-4">
@@ -91,9 +93,14 @@ export const OptionConfirmModal = ({
         </div>
 
         {/* 하단 버튼 */}
-        <div className="flex gap-3 px-6 pt-2 pb-6">
+        <div
+          className={cn(
+            'flex gap-2 px-6 py-4',
+            template === 0 ? 'flex-row' : 'flex-col',
+          )}
+        >
           <Button variant="outline" rounded="sm" onClick={onClose}>
-            정보 수정
+            수정하기
           </Button>
           <Button variant="primary1" rounded="sm" onClick={onConfirm}>
             확인

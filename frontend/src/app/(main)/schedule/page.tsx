@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
-import { MarathonCard, ScheduleFilter } from '@/features/schedule/components';
+import { ScheduleFilter } from '@/features/schedule/components';
 import { useMarathonFilter } from '@/features/schedule/hooks';
 import { MarathonEvent } from '@/features/schedule/types';
 import { scheduleService } from '@/features/schedule/services';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { LuImage } from 'react-icons/lu';
+import { MdImage } from 'react-icons/md';
 
 export default function MarathonSchedulePage() {
   const router = useRouter();
@@ -27,8 +27,8 @@ export default function MarathonSchedulePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await scheduleService.getSchedule();
-        setEvents(result.data);
+        const result = await scheduleService.getSchedules();
+        setEvents(result.data.content);
       } catch (error) {
         console.error('데이터 로드 실패:', error);
       }
@@ -42,7 +42,7 @@ export default function MarathonSchedulePage() {
 
   return (
     <div className="min-h-screen bg-primary1">
-      {/* 1. Header */}
+      {/* Header */}
       <header className="bg-primary text-black py-6  px-4 ">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-2">이벤트 </h2>
@@ -81,10 +81,10 @@ export default function MarathonSchedulePage() {
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="flex flex-col bg-white rounded-md overflow-hidden border hover:shadow-lg cursor-pointer"
+              className="flex flex-col bg-white rounded-md overflow-hidden hover:shadow-lg cursor-pointer"
               onClick={() => router.push(`/ticketing/${event.id}`)}
             >
-              {/* 1. 이미지 및 상태 칩 영역 */}
+              {/* 이미지 및 상태 칩 영역 */}
               <div className="relative aspect-[16/16] overflow-hidden">
                 {/* <img
                   src={
@@ -95,48 +95,71 @@ export default function MarathonSchedulePage() {
                   alt={event.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-gray-100"
                 /> */}
-                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-100 text-gray-400 rounded-lg">
-                  <LuImage size={48} />
-                  {/* 텍스트가 있을 경우를 대비해 mt-2(간격) 유지 */}
+                <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 text-gray-400 rounded-lg">
+                  <MdImage size={70} />
                 </div>
                 {/* 상태 칩 (예: 접수중, 마감, 예정) */}
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 mr-1 rounded-full text-xs font-bold bg-gray-100">
-                    {event.status}
-                  </span>
-                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-100">
+                  <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-gray-50">
                     catagory
                   </span>
                 </div>
               </div>
 
-              {/* 2. 카드 바디 (내용) 영역 */}
-              <div className="p-6 flex flex-col flex-grow">
+              {/* 카드 바디 (내용) 영역 */}
+              <div className="p-4 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <h2 className="font-bold text-black">{event.title}</h2>
+                  <div className="space-y-1.5">
+                    {/* 상태 뱃지 - 상태에 따라 색상이 변하면 더 좋습니다 */}
+                    <div
+                      className={`inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold ${
+                        event.status === 'IN_PROGRESS'
+                          ? 'bg-blue-50 text-blue-500'
+                          : 'bg-slate-100 text-slate-500'
+                      }`}
+                    >
+                      {event.status === 'IN_PROGRESS' ? '접수중' : '마감'}
+                    </div>
 
-                  <div className="space-y-2">
-                    <div className="flex items-center text-slate-500 text-sm">
-                      {/* <CalendarIcon size={16} className="mr-2 shrink-0" /> */}
-                      <span>{event.date}</span>
+                    <h2 className="font-bold text-black text-lg leading-tight truncate">
+                      {event.title}
+                    </h2>
+
+                    {/* 주소 및 코스 (한 줄 처리) */}
+                    <div className="flex items-center text-gray-500 text-sm min-w-0">
+                      <span className="truncate shrink-0 max-w-[120px] sm:max-w-none">
+                        {event.venueAddress}
+                      </span>
+                      <span className="mx-1 shrink-0">·</span>
+                      <span className="truncate">
+                        {event.courses.map((c) => c.name).join(', ')}
+                      </span>
                     </div>
-                    <div className="flex items-center text-slate-500 text-sm">
-                      {/* <MapPinIcon size={16} className="mr-2 shrink-0" /> */}
-                      <span className="mr-2">{event.location}</span>
-                      <span>{event.courses.join(', ')}</span>
-                    </div>
-                    <div className="flex items-center text-black text-md font-bold">
-                      {/* <MapPinIcon size={16} className="mr-2 shrink-0" /> */}
-                      무료
+                    {/* 날짜 정보 */}
+                    <div className="flex items-center text-gray-400 text-sm">
+                      <span>
+                        {new Date(event.eventAt).toLocaleDateString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                        })}
+                      </span>
                     </div>
                   </div>
+                </div>
+
+                {/* 가격 정보 */}
+                <div className="mt-3 flex items-center text-black text-md font-bold">
+                  {event.courses.length > 0
+                    ? `${Math.min(...event.courses.map((c) => c.price)).toLocaleString()}원 ~`
+                    : '가격 정보 없음'}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 4. Empty State (기존 유지) */}
+        {/* Empty State (기존 유지) */}
         {filteredEvents.length === 0 && (
           <div className="text-center py-32 border-2 border-dashed border-slate-200 rounded-3xl bg-white">
             <SearchIcon className="mx-auto text-slate-200 mb-4" size={48} />

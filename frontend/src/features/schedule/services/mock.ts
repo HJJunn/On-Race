@@ -1,7 +1,7 @@
-import { MARATHON_DATA } from '@/mockups';
+import { MARATHON_LIST } from '@/mockups';
 import { wrapMockResponse } from '@/utils/api';
 import { IScheduleService } from './interface';
 
 export const scheduleMock: IScheduleService = {
-  getSchedule: async () => wrapMockResponse(MARATHON_DATA),
+  getSchedules: async () => wrapMockResponse(MARATHON_LIST),
 };

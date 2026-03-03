@@ -29,6 +29,8 @@ public enum BusinessErrorCode implements ErrorCode {
 	AUTH_INVALID_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "AUTH_011", "유효하지 않은 리프레시 토큰입니다."),
 	AUTH_ALREADY_WITHDRAWN(HttpStatus.BAD_REQUEST, "AUTH_012", "이미 탈퇴한 계정입니다."),
 	AUTH_DUPLICATE_USER_ID(HttpStatus.BAD_REQUEST, "AUTH_013", "이미 해당 계정은 생성되었습니다."),
+	AUTH_INVALID_EMAIL_CODE(HttpStatus.BAD_REQUEST, "AUTH_014", "인증코드가 올바르지 않거나 만료되었습니다."),
+	AUTH_EMAIL_NOT_VERIFIED(HttpStatus.BAD_REQUEST, "AUTH_015", "이메일 인증이 완료되지 않았습니다."),
 
 	//MEDIA
 	MEDIA_UNSUPPORTED_CONTENT_TYPE(HttpStatus.BAD_REQUEST, "MDA_001", "허용되지 않은 Content_type 입니다."),
@@ -42,6 +44,9 @@ public enum BusinessErrorCode implements ErrorCode {
 	EVENT_COURSE_NOT_FOUND(HttpStatus.NOT_FOUND, "EVT_003", "해당 이벤트의 코스를 찾을 수 없습니다."),
 	EVENT_PACE_NOT_FOUND(HttpStatus.NOT_FOUND, "EVT_004", "해당 코스의 페이스를 찾을 수 없습니다."),
 	EVENT_PRE_SAVE_NOT_FOUND(HttpStatus.NOT_FOUND, "EVT_005", "사전정보를 찾을 수 없습니다."),
+
+	//ADDRESS
+	ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "ADR_001", "배송지를 찾을 수 없습니다."),
 
 	//ENTRY
 	ENTRY_NOT_FOUND(HttpStatus.NOT_FOUND, "ENT_001", "신청 정보를 찾을 수 없습니다."),
@@ -74,4 +79,3 @@ public enum BusinessErrorCode implements ErrorCode {
 		return message;
 	}
 }
-
