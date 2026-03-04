@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-// CVA로 스타일 정의
+// 1. CVA로 스타일 정의
 export const buttonVariants = cva(
   'inline-flex items-center justify-center w-full text-sm font-medium transition-colors disabled:pointer-events-none ' +
     'focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-status-focus ' +
@@ -50,7 +50,7 @@ export const buttonVariants = cva(
   },
 );
 
-// Props 타입 정의
+// 2. Props 타입 정의
 export interface ButtonProps
   extends
     React.ButtonHTMLAttributes<HTMLButtonElement>,

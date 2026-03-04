@@ -1,1 +1,1 @@
-export * from './marathonList';
+export * from './schedule';
