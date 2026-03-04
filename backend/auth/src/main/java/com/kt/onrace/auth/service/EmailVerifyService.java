@@ -5,6 +5,7 @@ import java.time.Duration;
 
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.StringCodec;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -29,14 +30,16 @@ public class EmailVerifyService {
 	public void sendCode(String email) {
 		String code = generateCode();
 
-		RBucket<String> bucket = redissonClient.getBucket(redisKeyGenerator.emailVerifyCodeKey(email));
+		RBucket<String> bucket = redissonClient.getBucket(redisKeyGenerator.emailVerifyCodeKey(email),
+			StringCodec.INSTANCE);
 		bucket.set(code, Duration.ofMinutes(CODE_TTL_MINUTES));
 
 		sendEmail(email, code);
 	}
 
 	public void verifyCode(String email, String code) {
-		RBucket<String> bucket = redissonClient.getBucket(redisKeyGenerator.emailVerifyCodeKey(email));
+		RBucket<String> bucket = redissonClient.getBucket(redisKeyGenerator.emailVerifyCodeKey(email),
+			StringCodec.INSTANCE);
 		String stored = bucket.get();
 
 		if (stored == null || !stored.equals(code)) {
