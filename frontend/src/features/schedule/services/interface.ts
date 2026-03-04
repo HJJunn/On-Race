@@ -1,5 +1,6 @@
-import { ResultProps } from '@/types/api';
+import { ApiResponse } from '@/types/api';
+import { MarathonList } from '../types';
 
 export interface IScheduleService {
-  getSchedule(): Promise<ResultProps>;
+  getSchedules(): Promise<ApiResponse<MarathonList>>;
 }

@@ -11,7 +11,7 @@ const Select = SelectPrimitive.Root;
 const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
-// 1. SelectTrigger를 위한 CVA 정의
+// SelectTrigger를 위한 CVA 정의
 const selectTriggerVariants = cva(
   'flex w-full items-center justify-between rounded-md border border-input px-3 py-2 text-sm ' +
     'focus:outline-none focus:ring-3 focus:ring-status-focus data-[placeholder]:text-gray-400',
@@ -34,7 +34,7 @@ const selectTriggerVariants = cva(
   },
 );
 
-// 2. Props 인터페이스 확장
+// Props 인터페이스 확장
 export interface SelectTriggerProps
   extends
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,

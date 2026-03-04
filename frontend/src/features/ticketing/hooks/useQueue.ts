@@ -21,7 +21,7 @@ export const useQueue = (eventId: string) => {
       try {
         const data: any = await getQueueStatus(eventId);
 
-        // 1. 처음 들어왔을 때만 초기 순번을 고정합니다.
+        // 처음 들어왔을 때만 초기 순번을 고정합니다.
         if (initialPosition.current === null) {
           initialPosition.current = data.position;
         }
@@ -35,7 +35,7 @@ export const useQueue = (eventId: string) => {
           return;
         }
 
-        // 2. [수정된 공식] 상대적 진행률 계산
+        // [수정된 공식] 상대적 진행률 계산
         // (초기순번 - 현재순번) / 초기순번 * 100
         // 예: 처음에 100번이었는데 지금 80번이면 (100-80)/100 = 20%
         const startPos = initialPosition.current ?? data.position;

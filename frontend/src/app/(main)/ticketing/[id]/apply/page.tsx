@@ -10,12 +10,12 @@ import { useQueue } from '@/features/ticketing/hooks';
  */
 export default function WaitingPage() {
   const params = useParams();
-  const eventId = params.eventId as string;
+  const eventId = params.id as string;
 
-  // 1. 커스텀 훅을 사용하여 상태와 부드러운 프로그래스 바 값 추출
+  // 커스텀 훅을 사용하여 상태와 부드러운 프로그래스 바 값 추출
   const { status, progress } = useQueue(eventId);
 
-  // 2. 초기 로딩 상태 처리
+  // 초기 로딩 상태 처리
   if (!status) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -29,7 +29,7 @@ export default function WaitingPage() {
     );
   }
 
-  // 3. 메인 UI 렌더링
+  // 메인 UI 렌더링
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">
       <QueueStatusCard status={status} progress={progress} />
