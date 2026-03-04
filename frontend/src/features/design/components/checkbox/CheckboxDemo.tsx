@@ -7,7 +7,7 @@ export default function CheckboxDemo() {
         Checkbox Component System
       </h1>
 
-      {/* Variants Showcase */}
+      {/* 1. Variants Showcase */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           1. Variants (Checked State)
@@ -31,7 +31,7 @@ export default function CheckboxDemo() {
         </div>
       </section>
 
-      {/* Sizes Showcase */}
+      {/* 2. Sizes Showcase */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           2. Sizes
@@ -52,7 +52,7 @@ export default function CheckboxDemo() {
         </div>
       </section>
 
-      {/* States Showcase */}
+      {/* 3. States Showcase */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           3. Interaction States
@@ -83,7 +83,7 @@ export default function CheckboxDemo() {
         </div>
       </section>
 
-      {/* Real-world Example (Terms of Service) */}
+      {/* 4. Real-world Example (Terms of Service) */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           4. Form Example

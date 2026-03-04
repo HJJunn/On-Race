@@ -15,7 +15,7 @@ export default function RadioGroupDemo() {
         </p>
       </div>
 
-      {/* 기본 베리언트 (Primary vs Error) */}
+      {/* 1. 기본 베리언트 (Primary vs Error) */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           1. Variants
@@ -77,7 +77,7 @@ export default function RadioGroupDemo() {
         </div>
       </section>
 
-      {/* 사이즈 (SM, Default, LG) */}
+      {/* 2. 사이즈 (SM, Default, LG) */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           2. Sizes
@@ -104,7 +104,7 @@ export default function RadioGroupDemo() {
         </div>
       </section>
 
-      {/* 상태별 (Disabled / Checked) */}
+      {/* 3. 상태별 (Disabled / Checked) */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           3. States
@@ -137,7 +137,7 @@ export default function RadioGroupDemo() {
         </div>
       </section>
 
-      {/* 실무 적용 예시 */}
+      {/* 4. 실무 적용 예시 */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold border-b pb-2 text-gray-700">
           4. Real-world Example

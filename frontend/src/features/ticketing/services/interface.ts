@@ -1,5 +1,5 @@
-import { ApiResponse } from '@/types/api';
+import { ResultProps } from '@/types/api';
 
 export interface ITicketingService {
-  getTicketingInfo(): Promise<ApiResponse<any>>;
+  getTicketingInfo(): Promise<ResultProps>;
 }

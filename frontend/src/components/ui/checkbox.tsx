@@ -7,7 +7,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-// CVA를 사용하여 스타일 변종(Variants) 정의
+// 1. CVA를 사용하여 스타일 변종(Variants) 정의
 const checkboxVariants = cva(
   'peer shrink-0 rounded-xs border border-primary ring-offset-background ' +
     'focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-status-focus ' +
@@ -34,7 +34,7 @@ const checkboxVariants = cva(
   },
 );
 
-// Props 인터페이스 확장
+// 2. Props 인터페이스 확장
 interface CheckboxProps
   extends
     React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,

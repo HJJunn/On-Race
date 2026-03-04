@@ -10,9 +10,9 @@ export default function OrderDetailPage() {
   const router = useRouter();
   return (
     <div className="max-w-6xl mx-auto px-4 pt-8 pb-0">
-      {/* 상단 네비게이션: 목록으로 가기 */}
+      {/* 1. 상단 네비게이션: 목록으로 가기 */}
       <div className="flex justify-self-start">
-        <Button variant="text" onClick={() => router.push('/schedule')}>
+        <Button variant="text">
           <LuArrowLeft size={20} />
           뒤로가기
         </Button>

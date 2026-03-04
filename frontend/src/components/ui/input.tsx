@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-// CVA를 사용하여 Input 스타일 변종 정의
+// 1. CVA를 사용하여 Input 스타일 변종 정의
 const inputVariants = cva(
   'flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ' +
     'focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-status-focus ' +

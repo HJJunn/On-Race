@@ -21,7 +21,7 @@ const RadioGroup = React.forwardRef<
 });
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-// RadioGroupItem을 위한 CVA 정의
+// 1. RadioGroupItem을 위한 CVA 정의
 const radioItemVariants = cva(
   'aspect-square rounded-full border border-primary text-primary ' +
     'focus:outline-none focus-visible:ring-2 focus-visible:ring-status-focus ' +

@@ -18,7 +18,7 @@ export default function ButtonDemo() {
     <div className="p-10 space-y-12 bg-blue-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-8">Button Component System</h1>
 
-      {/* Variants Showcase */}
+      {/* 1. Variants Showcase */}
       <section>
         <h2 className="text-xl font-semibold mb-4 border-b pb-2 text-gray-700">
           1. Variants (Rounded: Full)
@@ -33,7 +33,7 @@ export default function ButtonDemo() {
         </div>
       </section>
 
-      {/* Sizes Showcase */}
+      {/* 2. Sizes Showcase */}
       <section>
         <h2 className="text-xl font-semibold mb-4 border-b pb-2 text-gray-700">
           2. Sizes (Variant: Primary1)
@@ -48,7 +48,7 @@ export default function ButtonDemo() {
         </div>
       </section>
 
-      {/* Rounded Options */}
+      {/* 3. Rounded Options */}
       <section>
         <h2 className="text-xl font-semibold mb-4 border-b pb-2 text-gray-700">
           3. Rounded Options
@@ -73,7 +73,7 @@ export default function ButtonDemo() {
         </div>
       </section>
 
-      {/* Interaction States */}
+      {/* 4. Interaction States */}
       <section>
         <h2 className="text-xl font-semibold mb-4 border-b pb-2 text-gray-700">
           4. Disabled States
